@@ -1,4 +1,4 @@
-package com.nastech.bridge.service
+package com.nastech.android.service
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.AccessibilityServiceInfo
@@ -36,7 +36,7 @@ class NasTechAccessibilityService : AccessibilityService() {
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
         if (event != null) {
-            com.nastech.bridge.event.EventStore.add(event)
+            com.nastech.android.event.EventStore.add(event)
         }
     }
 
@@ -112,7 +112,7 @@ class NasTechAccessibilityService : AccessibilityService() {
     }
 
     override fun onDestroy() {
-        com.nastech.bridge.executor.ActionExecutor.shutdownTts()
+        com.nastech.android.executor.ActionExecutor.shutdownTts()
         instance = null
         super.onDestroy()
     }

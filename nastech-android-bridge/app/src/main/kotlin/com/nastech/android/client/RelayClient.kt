@@ -1,14 +1,14 @@
-package com.nastech.bridge.client
+package com.nastech.android.client
 
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
-import com.nastech.bridge.BuildConfig
+import com.nastech.android.BuildConfig
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.nastech.bridge.server.CommandDispatcher
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.server.CommandDispatcher
+import com.nastech.android.service.NasTechAccessibilityService
 import kotlinx.coroutines.*
 import okhttp3.*
 

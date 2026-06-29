@@ -1,9 +1,9 @@
-package com.nastech.bridge.executor
+package com.nastech.android.executor
 
 import android.view.accessibility.AccessibilityNodeInfo
-import com.nastech.bridge.model.NodeBounds
-import com.nastech.bridge.model.ScreenNode
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.model.NodeBounds
+import com.nastech.android.model.ScreenNode
+import com.nastech.android.service.NasTechAccessibilityService
 
 object ScreenReader {
 

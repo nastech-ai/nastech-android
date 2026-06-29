@@ -1,4 +1,4 @@
-package com.nastech.bridge.auth
+package com.nastech.android.auth
 
 import android.content.Context
 import android.content.SharedPreferences

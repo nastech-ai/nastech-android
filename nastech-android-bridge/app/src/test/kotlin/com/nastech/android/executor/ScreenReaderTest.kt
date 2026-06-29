@@ -1,8 +1,8 @@
-package com.nastech.bridge.executor
+package com.nastech.android.executor
 
 import android.view.accessibility.AccessibilityNodeInfo
 import android.view.accessibility.AccessibilityWindowInfo
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.service.NasTechAccessibilityService
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject

@@ -1,4 +1,4 @@
-package com.nastech.bridge.power
+package com.nastech.android.power
 
 import android.content.Context
 import android.os.PowerManager

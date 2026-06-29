@@ -1,18 +1,18 @@
 @file:Suppress("unused")
 
-package com.nastech.bridge.server
+package com.nastech.android.server
 
 import com.google.gson.JsonObject
-import com.nastech.bridge.BuildConfig
-import com.nastech.bridge.event.EventStore
-import com.nastech.bridge.executor.ActionExecutor
-import com.nastech.bridge.executor.ScreenReader
-import com.nastech.bridge.media.ScreenRecorder
-import com.nastech.bridge.model.DeviceCapabilities
-import com.nastech.bridge.model.ScreenNode
-import com.nastech.bridge.notification.NotificationStore
-import com.nastech.bridge.service.NasTechAccessibilityService
-import com.nastech.bridge.service.NasTechNotificationListener
+import com.nastech.android.BuildConfig
+import com.nastech.android.event.EventStore
+import com.nastech.android.executor.ActionExecutor
+import com.nastech.android.executor.ScreenReader
+import com.nastech.android.media.ScreenRecorder
+import com.nastech.android.model.DeviceCapabilities
+import com.nastech.android.model.ScreenNode
+import com.nastech.android.notification.NotificationStore
+import com.nastech.android.service.NasTechAccessibilityService
+import com.nastech.android.service.NasTechNotificationListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

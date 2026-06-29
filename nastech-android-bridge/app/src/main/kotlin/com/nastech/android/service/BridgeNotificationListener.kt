@@ -1,4 +1,4 @@
-package com.nastech.bridge.service
+package com.nastech.android.service
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -7,8 +7,8 @@ import android.content.IntentFilter
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
 import android.util.Log
-import com.nastech.bridge.BuildConfig
-import com.nastech.bridge.notification.NotificationStore
+import com.nastech.android.BuildConfig
+import com.nastech.android.notification.NotificationStore
 
 class NasTechNotificationListener : NotificationListenerService() {
 

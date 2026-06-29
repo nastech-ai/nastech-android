@@ -1,9 +1,9 @@
-package com.nastech.bridge.executor
+package com.nastech.android.executor
 
 import android.accessibilityservice.AccessibilityService
 import android.os.Bundle
 import android.view.accessibility.AccessibilityNodeInfo
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.service.NasTechAccessibilityService
 import io.mockk.*
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -25,7 +25,7 @@ class ActionExecutorRecycleTest {
         mockkObject(NasTechAccessibilityService.Companion)
         every { NasTechAccessibilityService.instance } returns mockService
         // WakeLockManager wakeForAction just executes the block in tests
-        mockkStatic("com.nastech.bridge.power.WakeLockManager")
+        mockkStatic("com.nastech.android.power.WakeLockManager")
     }
 
     @After

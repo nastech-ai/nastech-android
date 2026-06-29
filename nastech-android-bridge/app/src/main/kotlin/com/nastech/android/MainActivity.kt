@@ -1,4 +1,4 @@
-package com.nastech.bridge
+package com.nastech.android
 
 import android.app.Activity
 import android.content.ClipData
@@ -14,11 +14,11 @@ import android.widget.EditText
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
-import com.nastech.bridge.auth.PairingManager
-import com.nastech.bridge.client.RelayClient
-import com.nastech.bridge.media.ScreenRecorder
-import com.nastech.bridge.overlay.StatusOverlay
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.auth.PairingManager
+import com.nastech.android.client.RelayClient
+import com.nastech.android.media.ScreenRecorder
+import com.nastech.android.overlay.StatusOverlay
+import com.nastech.android.service.NasTechAccessibilityService
 import java.net.NetworkInterface
 
 class MainActivity : Activity() {

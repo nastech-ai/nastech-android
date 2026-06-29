@@ -1,4 +1,4 @@
-package com.nastech.bridge.overlay
+package com.nastech.android.overlay
 
 import android.content.Context
 import android.graphics.Color

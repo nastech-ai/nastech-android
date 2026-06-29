@@ -1,4 +1,4 @@
-package com.nastech.bridge.server
+package com.nastech.android.server
 
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue

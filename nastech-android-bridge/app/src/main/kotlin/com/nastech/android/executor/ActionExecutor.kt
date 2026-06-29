@@ -1,4 +1,4 @@
-package com.nastech.bridge.executor
+package com.nastech.android.executor
 
 import android.accessibilityservice.AccessibilityService
 import android.accessibilityservice.GestureDescription
@@ -14,11 +14,11 @@ import android.telephony.SmsManager
 import android.util.Base64
 import android.view.Display
 import android.view.accessibility.AccessibilityNodeInfo
-import com.nastech.bridge.model.ActionResult
-import com.nastech.bridge.model.ScreenNode
-import com.nastech.bridge.model.computeHash
-import com.nastech.bridge.power.WakeLockManager
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.model.ActionResult
+import com.nastech.android.model.ScreenNode
+import com.nastech.android.model.computeHash
+import com.nastech.android.power.WakeLockManager
+import com.nastech.android.service.NasTechAccessibilityService
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.ByteArrayOutputStream
@@ -412,9 +412,9 @@ object ActionExecutor {
         ))
     }
 
-    private fun countNodes(nodes: List<com.nastech.bridge.model.ScreenNode>): Int {
+    private fun countNodes(nodes: List<com.nastech.android.model.ScreenNode>): Int {
         var count = 0
-        fun walk(ns: List<com.nastech.bridge.model.ScreenNode>) {
+        fun walk(ns: List<com.nastech.android.model.ScreenNode>) {
             for (n in ns) {
                 count++
                 walk(n.children)
@@ -771,10 +771,10 @@ object ActionExecutor {
     }
 
     private fun findInTree(
-        nodes: List<com.nastech.bridge.model.ScreenNode>,
+        nodes: List<com.nastech.android.model.ScreenNode>,
         text: String?,
         className: String?
-    ): com.nastech.bridge.model.ScreenNode? {
+    ): com.nastech.android.model.ScreenNode? {
         for (node in nodes) {
             val textMatch = text == null || node.text?.contains(text, true) == true ||
                     node.contentDescription?.contains(text, true) == true

@@ -1,6 +1,6 @@
-package com.nastech.bridge.server
+package com.nastech.android.server
 
-import com.nastech.bridge.auth.PairingManager
+import com.nastech.android.auth.PairingManager
 import io.ktor.http.*
 import io.ktor.serialization.gson.*
 import io.ktor.server.application.*

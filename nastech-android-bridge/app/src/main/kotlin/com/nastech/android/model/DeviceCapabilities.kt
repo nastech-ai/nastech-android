@@ -1,4 +1,4 @@
-package com.nastech.bridge.model
+package com.nastech.android.model
 
 import android.content.Context
 import android.content.pm.PackageManager

@@ -1,11 +1,11 @@
-package com.nastech.bridge
+package com.nastech.android
 
 import android.app.Application
-import com.nastech.bridge.auth.PairingManager
-import com.nastech.bridge.client.RelayClient
-import com.nastech.bridge.model.DeviceCapabilities
-import com.nastech.bridge.power.WakeLockManager
-import com.nastech.bridge.server.NasTechServer
+import com.nastech.android.auth.PairingManager
+import com.nastech.android.client.RelayClient
+import com.nastech.android.model.DeviceCapabilities
+import com.nastech.android.power.WakeLockManager
+import com.nastech.android.server.NasTechServer
 
 class NasTechApplication : Application() {
     override fun onCreate() {

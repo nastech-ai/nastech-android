@@ -1,4 +1,4 @@
-package com.nastech.bridge.server
+package com.nastech.android.server
 
 import java.util.concurrent.ConcurrentHashMap
 

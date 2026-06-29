@@ -1,4 +1,4 @@
-package com.nastech.bridge.event
+package com.nastech.android.event
 
 import android.view.accessibility.AccessibilityEvent
 

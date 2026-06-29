@@ -1,4 +1,4 @@
-package com.nastech.bridge.notification
+package com.nastech.android.notification
 
 import android.app.Notification
 import android.os.Bundle

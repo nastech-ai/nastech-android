@@ -1,4 +1,4 @@
-package com.nastech.bridge.model
+package com.nastech.android.model
 
 data class ScreenNode(
     val nodeId: String,

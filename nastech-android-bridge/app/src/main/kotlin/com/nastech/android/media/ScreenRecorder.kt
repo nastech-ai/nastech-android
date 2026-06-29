@@ -1,4 +1,4 @@
-package com.nastech.bridge.media
+package com.nastech.android.media
 
 import android.content.Context
 import android.content.Intent
@@ -10,7 +10,7 @@ import android.media.projection.MediaProjectionManager
 import android.os.Handler
 import android.os.HandlerThread
 import android.util.Base64
-import com.nastech.bridge.service.NasTechAccessibilityService
+import com.nastech.android.service.NasTechAccessibilityService
 import java.io.File
 
 object ScreenRecorder {

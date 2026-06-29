@@ -1,8 +1,8 @@
-package com.nastech.bridge.server
+package com.nastech.android.server
 
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import com.nastech.bridge.auth.PairingManager
+import com.nastech.android.auth.PairingManager
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.request.*
