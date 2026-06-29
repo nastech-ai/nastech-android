@@ -7,7 +7,7 @@ read_when:
 
 # Configuration
 
-Config lives in `~/.hermes/.env` (only needed for direct USB/LAN; relay mode is the default and needs none).
+Config lives in `~/.nastech/.env` (only needed for direct USB/LAN; relay mode is the default and needs none).
 
 | Variable | Default | Purpose |
 |----------|---------|---------|

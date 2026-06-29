@@ -492,7 +492,7 @@ async def _handle_http(
         if ws is None or ws.closed:
             return web.json_response(
                 {
-                    "error": "No phone connected. Open the Hermes app on your phone and connect."
+                    "error": "No phone connected. Open the NasTech app on your phone and connect."
                 },
                 status=503,
             )

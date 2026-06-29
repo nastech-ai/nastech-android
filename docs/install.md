@@ -1,5 +1,5 @@
 ---
-summary: "Full install: hermes-agent plugin + bridge APK + Python dev setup."
+summary: "Full install: nastech-agent plugin + bridge APK + Python dev setup."
 read_when:
   - "Installing from scratch"
   - "Debugging a failed install"
@@ -8,37 +8,37 @@ read_when:
 
 # Install
 
-## Plugin (hermes-agent v0.3.0+)
+## Plugin (nastech-agent v0.3.0+)
 
 One-liner (`install.sh`):
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/raulvidis/hermes-android/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/nastech-ai/nastech-android/main/install.sh | bash
 ```
 
 What it does:
 1. Shallow-clones the repo to a temp dir.
-2. Copies `hermes-android-plugin/` → `~/.hermes/plugins/hermes-android`.
+2. Copies `nastech-android-plugin/` → `~/.nastech/plugins/nastech-android`.
 3. Installs `aiohttp` if missing (`pip`/`pip3`).
 4. Cleans up the temp dir.
 
-Then restart hermes-gateway and run `/plugins` to verify — should show `✓ hermes-android v0.3.0 (38 tools)`.
+Then restart nastech-gateway and run `/plugins` to verify — should show `✓ nastech-android v0.3.0 (38 tools)`.
 
 Manual alternative:
 ```bash
-mkdir -p ~/.hermes/plugins
-cp -r hermes-android-plugin ~/.hermes/plugins/hermes-android
+mkdir -p ~/.nastech/plugins
+cp -r nastech-android-plugin ~/.nastech/plugins/nastech-android
 ```
 
 ## Bridge APK
 
-**Option A — prebuilt:** download `hermes-android-<version>.apk` from the [Latest Build release](https://github.com/raulvidis/hermes-android/releases/tag/latest-build); install on-device or `adb install hermes-android-*.apk`.
+**Option A — prebuilt:** download `nastech-android-<version>.apk` from the [Latest Build release](https://github.com/nastech-ai/nastech-android/releases/tag/latest-build); install on-device or `adb install nastech-android-*.apk`.
 
 **Option B — build from source:**
 ```bash
-cd hermes-android-bridge
+cd nastech-android-bridge
 ./gradlew assembleDebug
-adb install app/build/outputs/apk/debug/hermes-android-*.apk
+adb install app/build/outputs/apk/debug/nastech-android-*.apk
 ```
 
 It is an unsigned **debug** build (not on Play Store / F-Droid yet).

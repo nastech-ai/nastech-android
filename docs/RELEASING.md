@@ -13,10 +13,10 @@ read_when:
 
 1. **CHANGELOG.md** — move items from `## [Unreleased]` into a new `## [X.Y.Z]` section (dated). Reset `[Unreleased]` to empty. One bullet per entry; preserve `#PR` + contributor credit.
 2. **Bump version** in `pyproject.toml` (`[project] version = "X.Y.Z"`). Keep `setup.py` consistent if it pins a version.
-3. **Bump version** in plugin metadata (`hermes-android-plugin/plugin.yaml`) and any `vX.Y.Z` strings in README if present.
+3. **Bump version** in plugin metadata (`nastech-android-plugin/plugin.yaml`) and any `vX.Y.Z` strings in README if present.
 4. **Commit:** `chore(release): vX.Y.Z` (explicit paths only).
 5. **Tag:** `git tag vX.Y.Z`.
-6. **GitHub Release:** create release `vX.Y.Z` with the CHANGELOG section as the body. The `latest-build` APK already carries the current build; attach `hermes-android-<version>.apk` to the versioned release if a pinned artifact is wanted.
+6. **GitHub Release:** create release `vX.Y.Z` with the CHANGELOG section as the body. The `latest-build` APK already carries the current build; attach `nastech-android-<version>.apk` to the versioned release if a pinned artifact is wanted.
 7. **Verify:** tag exists, GitHub release exists, plugin version shows correctly via `/plugins`.
 8. **Reopen `[Unreleased]`** at the top of CHANGELOG.md.
 

@@ -1,0 +1,5 @@
+name: nastech-android
+version: 0.3.0
+description: "Remote Android device control — read screen, tap, type, open apps, take screenshots via the NasTech companion app"
+author: nastech-ai
+requires_env: []

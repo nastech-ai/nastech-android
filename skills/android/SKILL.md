@@ -3,19 +3,19 @@ name: android
 description: When the user wants to control or automate an Android phone or device.
 version: 1.0.0
 metadata:
-  hermes:
+  nastech:
     tags: [android, phone, automation, accessibility]
     category: android
 ---
 
 # Android Device Control
 
-You can control an Android phone remotely using the `android_*` tools. The phone runs a companion app called **Hermes Bridge** which exposes an HTTP API. You communicate with it over the network — no USB, no ADB, no physical connection needed.
+You can control an Android phone remotely using the `android_*` tools. The phone runs a companion app called **NasTech** which exposes an HTTP API. You communicate with it over the network — no USB, no ADB, no physical connection needed.
 
 ## How It Works
 
 ```
-Hermes Agent (this server)  ──HTTP──>  Hermes Bridge app (Android phone)
+NasTech Agent (this server)  ──HTTP──>  NasTech app (Android phone)
                                         ├── Reads screen via AccessibilityService
                                         ├── Performs taps, types, swipes
                                         └── Authenticated via pairing code
@@ -23,7 +23,7 @@ Hermes Agent (this server)  ──HTTP──>  Hermes Bridge app (Android phone)
 
 ## Setup / Connecting a Phone
 
-When the user wants to connect their phone, ask for their **pairing code** — a 6-character code shown in the Hermes Bridge app (e.g. `K7V3NP`).
+When the user wants to connect their phone, ask for their **pairing code** — a 6-character code shown in the NasTech app (e.g. `K7V3NP`).
 
 Then call:
 ```

@@ -7,7 +7,7 @@ read_when:
 
 # Manual Tests
 
-Automated: `pytest tests/` (Python toolset) and `cd hermes-android-bridge && ./gradlew lint test` (Kotlin). The procedures below need a real device or AAOS head unit.
+Automated: `pytest tests/` (Python toolset) and `cd nastech-android-bridge && ./gradlew lint test` (Kotlin). The procedures below need a real device or AAOS head unit.
 
 ## Connection
 

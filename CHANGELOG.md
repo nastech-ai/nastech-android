@@ -11,12 +11,12 @@ All notable changes to this project are documented here. Format based on [Keep a
 ## [0.3.0]
 
 ### Added
-- feat(bridge): add per-IP auth rate limiting to BridgeServer (#51)
+- feat(bridge): add per-IP auth rate limiting to NasTechServer (#51)
 - Notification listener — agent reads incoming notifications in real-time (`android_notifications` / `android_events`)
 - Clipboard bridge — read/write clipboard between server and phone (`android_clipboard_read` / `android_clipboard_write`)
 - Direct SMS and calls without UI navigation (`android_send_sms` / `android_call`)
 - Location sharing — agent reads phone GPS location (`android_location`)
-- hermes-agent v0.3 plugin system integration (`hermes-android-plugin/`, 38 tools)
+- nastech-agent v0.3 plugin system integration (`nastech-android-plugin/`, 38 tools)
 
 ### Changed
 - wrap /wait handler in withContext(Dispatchers.Main) for thread-safety (#55)
@@ -44,5 +44,5 @@ All notable changes to this project are documented here. Format based on [Keep a
 - recycle AccessibilityWindowInfo in findNodeById and readWidgets (#31)
 - recycle AccessibilityWindowInfo in ScreenReader (#32)
 
-[Unreleased]: https://github.com/raulvidis/hermes-android/compare/v0.3.0...HEAD
-[0.3.0]: https://github.com/raulvidis/hermes-android/releases/tag/v0.3.0
+[Unreleased]: https://github.com/nastech-ai/nastech-android/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/nastech-ai/nastech-android/releases/tag/v0.3.0

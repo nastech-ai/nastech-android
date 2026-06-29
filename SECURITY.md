@@ -2,7 +2,7 @@
 
 ## Overview
 
-hermes-android gives a remote AI agent full control of an Android device via AccessibilityService. This is powerful and inherently sensitive — treat it with the same caution as remote desktop access.
+nastech-android gives a remote AI agent full control of an Android device via AccessibilityService. This is powerful and inherently sensitive — treat it with the same caution as remote desktop access.
 
 ## Current Security Model
 
@@ -38,7 +38,7 @@ Once paired, the agent has unrestricted access to:
 - Read installed app list
 
 There is no granular permission system — the agent can access banking apps, messages, etc.
-- **Mitigation**: Only pair with trusted Hermes instances. Disconnect when not in use.
+- **Mitigation**: Only pair with trusted NasTech instances. Disconnect when not in use.
 
 ### No Command Audit Log
 There is no persistent log of what commands the agent executed on the phone.

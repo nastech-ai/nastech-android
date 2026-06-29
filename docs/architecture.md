@@ -9,7 +9,7 @@ read_when:
 # Architecture
 
 ```
-User  ──>  Hermes Agent  ──HTTP──>  Relay (localhost:8766)  ──WebSocket──>  Phone
+User  ──>  NasTech Agent  ──HTTP──>  Relay (localhost:8766)  ──WebSocket──>  Phone
                                           │
                                    aiohttp server
                                    pairing code auth
@@ -22,10 +22,10 @@ The phone **connects out** to the relay over WebSocket (NAT-friendly — no port
 
 | Component | Path | Language | Role |
 |-----------|------|----------|------|
-| Android bridge app | `hermes-android-bridge/` | Kotlin | Runs on the phone; executes commands via AccessibilityService |
-| Python toolset | `tools/`, `tests/`, `hermes-android-plugin/` | Python | Runs on the server; `android_*` tools + WebSocket relay |
+| Android bridge app | `nastech-android-bridge/` | Kotlin | Runs on the phone; executes commands via AccessibilityService |
+| Python toolset | `tools/`, `tests/`, `nastech-android-plugin/` | Python | Runs on the server; `android_*` tools + WebSocket relay |
 
-The Python code is standalone here for dev/test (`pip install -e .`, `pytest`); the production copy lives in hermes-agent. **The APK does not depend on the Python files.**
+The Python code is standalone here for dev/test (`pip install -e .`, `pytest`); the production copy lives in nastech-agent. **The APK does not depend on the Python files.**
 
 ## Data flow (relay mode)
 
@@ -49,13 +49,13 @@ Runs two network endpoints simultaneously:
 
 | Component | Type | Port | Purpose |
 |-----------|------|------|---------|
-| BridgeServer (Ktor/Netty) | HTTP server | 8765 | Direct USB/LAN dev |
+| NasTechServer (Ktor/Netty) | HTTP server | 8765 | Direct USB/LAN dev |
 | RelayClient (OkHttp) | WebSocket client | outbound | Connects to remote relay |
 
-Key classes (`app/src/main/kotlin/com/hermesandroid/bridge/`):
+Key classes (`app/src/main/kotlin/com/nastech/bridge/`):
 - `auth/PairingManager.kt` — 6-char code gen/validate (excludes confusable 0/O/1/I); persisted.
 - `client/RelayClient.kt` — outbound WebSocket; auto-reconnect with exponential backoff.
-- `service/BridgeAccessibilityService.kt` — singleton AccessibilityService; reads UI tree on demand.
+- `service/NasTechAccessibilityService.kt` — singleton AccessibilityService; reads UI tree on demand.
 - `executor/ActionExecutor.kt` — tap/type/swipe/scroll/wait/open-app; wakes device via `WakeLockManager`.
 - `executor/ScreenReader.kt` — traverses accessibility tree → `ScreenNode` hierarchy; finds nodes by text.
 - `overlay/StatusOverlay.kt` — always-on HUD.
@@ -76,7 +76,7 @@ aiohttp server in a background daemon thread, started by `android_setup()`.
 
 ## Integration paths
 
-- **Plugin (preferred):** drop `hermes-android-plugin/` into `~/.hermes/plugins/hermes-android`; `register(ctx)` registers tools via the plugin API.
-- **Legacy `tools/`:** import `tools/android_tool.py` directly into hermes-agent's registry.
+- **Plugin (preferred):** drop `nastech-android-plugin/` into `~/.nastech/plugins/nastech-android`; `register(ctx)` registers tools via the plugin API.
+- **Legacy `tools/`:** import `tools/android_tool.py` directly into nastech-agent's registry.
 
 Both share the same tool implementations and relay code.
