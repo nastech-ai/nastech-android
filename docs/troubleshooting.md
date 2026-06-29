@@ -24,7 +24,7 @@ read_when:
 
 ## Permissions
 
-- "Service not enabled" → Settings > Accessibility > Hermes Bridge > ON.
+- "Service not enabled" → Settings > Accessibility > NasTech > ON.
 - `android_location` errors → grant Location runtime perm (guarded since #49).
 - `android_send_sms` / `android_call` / `android_search_contacts` error → grant SMS/Phone/Contacts; on AAOS these are unavailable by design.
 - `android_notifications` empty → enable Notification access (Special app access).

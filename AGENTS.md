@@ -1,34 +1,43 @@
-# AGENTS.md
+# NasTech Android — Agent Guide
 
-READ ./.agents/AGENTS.base.md BEFORE ANYTHING (skip if missing).
+NasTech Android is a companion app for NasTech Agent that runs on Android devices,
+enabling full remote device control via a WebSocket relay.
 
-Repo-specific hard rules only. Shared rules (Reviews, PR/CI, Git, Runtime Safety,
-generic Project Defaults, Workflows) live in `AGENTS.base.md` — not duplicated here.
+## Architecture
 
-## Core
-- Repo: hermes-android. Two components: Kotlin bridge app (`hermes-android-bridge/`) + Python toolset (`tools/`, `tests/`, `hermes-android-plugin/`).
-- Python prod copy lives in hermes-agent repo; this repo = standalone dev/test. APK does NOT depend on Python.
-- Branch `main`. pyproject version 0.3.0.
-- Shipped = git tag (`latest-build` APK + version tag), not main merge.
-- Confidentiality: this is a remote-control bridge — security-sensitive. Full device access once paired. Never expose pairing codes, server IPs, tokens, screen content, screenshots, contacts/SMS/location data outside the task. See SECURITY.md.
+```
+Phone (NasTech APK)  ──WebSocket──>  Relay (port 8766)  ──HTTP──>  NasTech Agent
+```
 
-## Routing
-- Screenshots/media: tools return `MEDIA:<path>` (temp files) — relay to user, don't persist.
-- Secrets: `~/.hermes/.env` (`ANDROID_BRIDGE_URL`, `ANDROID_BRIDGE_TOKEN`). Never echo/dump env. Never log pairing codes or tokens.
-- Test the bridge against a real device or relay; no test accounts baked in.
-- Direct USB/LAN dev → phone Ktor server port 8765. Relay (default) → port 8766.
+The phone connects **out** to the relay (NAT-friendly, no port forwarding).
+The relay bridges HTTP tool calls to the phone over WebSocket.
 
-## Project Defaults (repo-specific)
-- Runtimes: Gradle (Kotlin bridge), Python >=3.11 (toolset).
-- Bug-fix regression tests → Python: `tests/`; Kotlin: bridge unit tests.
-- New-dep health check sources: pyproject.toml / Gradle.
-- PII: strip phone numbers, recipients, location from tool responses/logs (existing convention — keep it).
+## Project Structure
 
-## PR / CI (repo-specific)
-- Every push to `main` auto-publishes a debug APK to the `latest-build` release.
+| Component | Path | Language | Purpose |
+|-----------|------|----------|---------|
+| Android bridge app | `nastech-android-bridge/` | Kotlin | Runs on the phone; executes commands via AccessibilityService |
+| Python toolset | `tools/`, `tests/`, `nastech-android-plugin/` | Python | Runs on the server; `nastech_*` tools + WebSocket relay |
 
-## Git (repo-specific)
-- Common commit scope: `(bridge)`.
+## Build
 
-## Runtime Safety (repo-specific)
-- Destructive on-device actions (purchases, sends, calls, deletions) → confirm with user before executing.
+```bash
+cd nastech-android-bridge
+./gradlew assembleDebug
+```
+
+APK output: `nastech-android-bridge/app/build/outputs/apk/debug/nastech-android-<version>.apk`
+
+## CI/CD
+
+GitHub Actions (`.github/workflows/build.yml`) auto-builds on push to `main`.
+APKs are published to the `latest-build` release.
+
+## Plugin Integration
+
+Drop `nastech-android-plugin/` into `~/.nastech/plugins/nastech-android/`
+and restart NasTech Agent. All `nastech_*` tools auto-register.
+
+## Copyright
+
+Copyright © 2026 Naswif Cohen Nsamba / NasTech

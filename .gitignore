@@ -22,10 +22,10 @@ venv/
 Thumbs.db
 
 # Android build outputs
-hermes-android-bridge/app/build/
-hermes-android-bridge/build/
-hermes-android-bridge/.gradle/
-hermes-android-bridge/local.properties
+nastech-android-bridge/app/build/
+nastech-android-bridge/build/
+nastech-android-bridge/.gradle/
+nastech-android-bridge/local.properties
 
 # Environment
 .env

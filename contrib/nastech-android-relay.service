@@ -1,0 +1,24 @@
+[Unit]
+Description=NasTech Android Bridge Relay
+Documentation=https://github.com/nastech-ai/nastech-android
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/nastech-android/contrib/nastech-relay-daemon.py
+WorkingDirectory=/opt/nastech-android
+EnvironmentFile=-%h/.nastech/.env
+Restart=on-failure
+RestartSec=5
+StartLimitBurst=5
+StartLimitIntervalSec=60
+
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=%h/.nastech
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

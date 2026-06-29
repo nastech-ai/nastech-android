@@ -14,7 +14,7 @@ read_when:
 - NAT-friendly connectivity: the phone connects **out** to a relay — no port forwarding, VPN, or USB required for normal use.
 - Simple pairing: a 6-character code, nothing else for the user to configure.
 - Broad device coverage: phones and Android Automotive (AAOS) head units, degrading gracefully where hardware is absent.
-- Two clean integration paths: hermes-agent plugin (preferred) and legacy `tools/` import, sharing one implementation.
+- Two clean integration paths: nastech-agent plugin (preferred) and legacy `tools/` import, sharing one implementation.
 
 ## Non-goals
 
@@ -26,7 +26,7 @@ read_when:
 
 ## Compatibility commitments
 
-- Tool names (`android_*`) and their core argument shapes are the stable public surface for hermes-agent; additive changes preferred, removals are breaking.
+- Tool names (`android_*`) and their core argument shapes are the stable public surface for nastech-agent; additive changes preferred, removals are breaking.
 - Command envelope (`request_id`/`method`/`path`/`params`/`body` ↔ `request_id`/`result`/`status`) is the bridge↔relay contract.
 - Ports: phone Ktor server `8765`, relay `8766` (overridable via env).
 - Pairing alphabet excludes confusable chars (0/O/1/I); codes are case-sensitive.

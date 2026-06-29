@@ -1,7 +1,7 @@
 """
-hermes-android tool — registers android_* tools into hermes-agent registry.
+nastech-android tool — registers android_* tools into nastech-agent registry.
 
-NOTE: This file must be kept in sync with hermes-android-plugin/android_tool.py.
+NOTE: This file must be kept in sync with nastech-android-plugin/android_tool.py.
       The only difference is the import path for android_relay (see android_setup).
       Apply any bug fixes or feature changes to BOTH files.
 
@@ -42,7 +42,7 @@ from urllib.parse import quote
 
 # ── Config ────────────────────────────────────────────────────────────────────
 #
-# Architecture: Phone connects OUT to Hermes server via WebSocket (NAT-friendly).
+# Architecture: Phone connects OUT to NasTech server via WebSocket (NAT-friendly).
 # A relay server runs on localhost and bridges HTTP tool calls to the phone.
 #
 #   Tools ──HTTP──> Relay (localhost:8766) ──WebSocket──> Phone
@@ -766,21 +766,21 @@ def android_setup(pairing_code: str) -> str:
     The relay runs on this server and waits for the phone to connect via WebSocket.
 
     The user needs to:
-    1. Open the Hermes Bridge app on their phone
+    1. Open the NasTech app on their phone
     2. Enter this server's public IP and the pairing code
     3. The phone connects to the relay automatically
 
-    Call this when the user provides their pairing code from the Hermes Bridge app.
+    Call this when the user provides their pairing code from the NasTech app.
     Example: android_setup("K7V3NP")
     """
     try:
         port = _relay_port()
         public_ip = _get_public_ip()
 
-        # Save config to ~/.hermes/.env
+        # Save config to ~/.nastech/.env
         relay_url = f"http://localhost:{port}"
         try:
-            from hermes_cli.config import save_env_value
+            from nastech_cli.config import save_env_value
 
             save_env_value("ANDROID_BRIDGE_URL", relay_url)
             save_env_value("ANDROID_BRIDGE_TOKEN", pairing_code)
@@ -788,7 +788,7 @@ def android_setup(pairing_code: str) -> str:
         except ImportError:
             from pathlib import Path
 
-            env_path = Path.home() / ".hermes" / ".env"
+            env_path = Path.home() / ".nastech" / ".env"
             env_path.parent.mkdir(parents=True, exist_ok=True)
             _update_env_file(env_path, "ANDROID_BRIDGE_URL", relay_url)
             _update_env_file(env_path, "ANDROID_BRIDGE_TOKEN", pairing_code)
@@ -830,7 +830,7 @@ def android_setup(pairing_code: str) -> str:
                         "phone_connected": False,
                         "server_address": server_address,
                         "user_instructions": (
-                            f"Open the Hermes Bridge app on your phone and enter:\n"
+                            f"Open the NasTech app on your phone and enter:\n"
                             f"  Server: {server_address}\n"
                             f"  Pairing code: {pairing_code}\n"
                             f"Then tap Connect."
@@ -841,7 +841,7 @@ def android_setup(pairing_code: str) -> str:
             return json.dumps(
                 {
                     "status": "error",
-                    "message": "android_relay module not found. Make sure hermes-android is installed.",
+                    "message": "android_relay module not found. Make sure nastech-android is installed.",
                 }
             )
 
@@ -850,7 +850,7 @@ def android_setup(pairing_code: str) -> str:
 
 
 def _update_env_file(env_path, key: str, value: str):
-    """Simple .env file updater (fallback when hermes_cli.config not available)."""
+    """Simple .env file updater (fallback when nastech_cli.config not available)."""
     lines = []
     if env_path.exists():
         lines = env_path.read_text(encoding="utf-8", errors="replace").splitlines(True)
@@ -1062,13 +1062,13 @@ _SCHEMAS = {
     },
     "android_setup": {
         "name": "android_setup",
-        "description": "Start the Android bridge relay and set the pairing code. Call this when the user wants to connect their phone. The relay runs on this server — the phone connects to it remotely via WebSocket. Only needs the pairing code shown in the Hermes Bridge app on the phone.",
+        "description": "Start the Android bridge relay and set the pairing code. Call this when the user wants to connect their phone. The relay runs on this server — the phone connects to it remotely via WebSocket. Only needs the pairing code shown in the NasTech app on the phone.",
         "parameters": {
             "type": "object",
             "properties": {
                 "pairing_code": {
                     "type": "string",
-                    "description": "6-character pairing code shown in the Hermes Bridge app on the phone",
+                    "description": "6-character pairing code shown in the NasTech app on the phone",
                 },
             },
             "required": ["pairing_code"],
@@ -1510,5 +1510,5 @@ try:
             requires_env=[],  # ANDROID_BRIDGE_URL has a default
         )
 except ImportError:
-    # Running outside hermes-agent context (e.g. tests)
+    # Running outside nastech-agent context (e.g. tests)
     pass

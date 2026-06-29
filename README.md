@@ -1,15 +1,15 @@
-# hermes-android
+# nastech-android
 
-Give your AI agent hands. Remote Android device control for [hermes-agent](https://github.com/NousResearch/hermes-agent).
+Give your AI agent hands. Remote Android device control for [nastech-agent](https://github.com/nastech-ai/nastech-agent).
 
 ## How it works
 
 ```
-Phone (home WiFi)  ──WebSocket──>  Hermes Server (cloud)  <──HTTP──  AI Agent
+Phone (home WiFi)  ──WebSocket──>  NasTech Server (cloud)  <──HTTP──  AI Agent
                                    relay on port 8766
 ```
 
-The phone connects **out** to your Hermes server — works behind any NAT, no port forwarding, no VPN, no USB. Just a 6-character pairing code.
+The phone connects **out** to your NasTech server — works behind any NAT, no port forwarding, no VPN, no USB. Just a 6-character pairing code.
 
 ## Repository Structure
 
@@ -17,66 +17,66 @@ This repo contains **two components**:
 
 | Component | Path | Language | Purpose |
 |-----------|------|----------|---------|
-| **Android bridge app** | `hermes-android-bridge/` | Kotlin | Runs on the phone. Connects to server via WebSocket, executes commands via AccessibilityService |
-| **Python toolset** | `tools/`, `tests/` | Python | Runs on the server. 36 `android_*` tools + WebSocket relay. Also lives in [hermes-agent](https://github.com/NousResearch/hermes-agent) as the production copy |
+| **Android bridge app** | `nastech-android-bridge/` | Kotlin | Runs on the phone. Connects to server via WebSocket, executes commands via AccessibilityService |
+| **Python toolset** | `tools/`, `tests/` | Python | Runs on the server. 36 `android_*` tools + WebSocket relay. Also lives in [nastech-agent](https://github.com/nastech-ai/nastech-agent) as the production copy |
 
-> **Note:** The Python code exists here for standalone development and testing (`pip install -e .`, `pytest`). The production copy is in the hermes-agent repo. The Android app does not use or depend on the Python files.
+> **Note:** The Python code exists here for standalone development and testing (`pip install -e .`, `pytest`). The production copy is in the nastech-agent repo. The Android app does not use or depend on the Python files.
 
-## Install as hermes-agent plugin (v0.3.0+)
+## Install as nastech-agent plugin (v0.3.0+)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/raulvidis/hermes-android/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/nastech-ai/nastech-android/main/install.sh | bash
 ```
 
 Or manually:
 ```bash
-mkdir -p ~/.hermes/plugins
-cp -r hermes-android-plugin ~/.hermes/plugins/hermes-android
+mkdir -p ~/.nastech/plugins
+cp -r nastech-android-plugin ~/.nastech/plugins/nastech-android
 ```
 
-Restart hermes — run `/plugins` to verify. Should show: `✓ hermes-android v0.3.0 (38 tools)`
+Restart nastech — run `/plugins` to verify. Should show: `✓ nastech-android v0.3.0 (38 tools)`
 
 ## Quick Start
 
 ### 1. Install the bridge app on your phone
 
 **Option A — Download the prebuilt APK (easiest).** Every push to `main` automatically
-publishes a fresh debug APK to the [**Latest Build**](https://github.com/raulvidis/hermes-android/releases/tag/latest-build)
-release. Download the `hermes-android-<version>.apk` asset from there and install it — either
+publishes a fresh debug APK to the [**Latest Build**](https://github.com/nastech-ai/nastech-android/releases/tag/latest-build)
+release. Download the `nastech-android-<version>.apk` asset from there and install it — either
 by opening the file on the device (enable "Install unknown apps" for your browser/file
-manager when prompted) or via `adb install hermes-android-*.apk`.
+manager when prompted) or via `adb install nastech-android-*.apk`.
 
 **Option B — Build from source:**
 ```bash
-cd hermes-android-bridge
+cd nastech-android-bridge
 ./gradlew assembleDebug
-adb install app/build/outputs/apk/debug/hermes-android-*.apk
+adb install app/build/outputs/apk/debug/nastech-android-*.apk
 ```
 
 > The APK is an unsigned **debug** build, which is why Android/Play Protect may warn on
 > install — it is not yet published on the Play Store or F-Droid.
 
 ### 2. Grant permissions on the phone
-- Open Hermes Bridge app
-- Tap **Enable Accessibility Service** → find Hermes Bridge → toggle ON
+- Open NasTech app
+- Tap **Enable Accessibility Service** → find NasTech → toggle ON
 - Tap **Enable Status Overlay** → grant permission
 - Tap **Grant Screen Recording** → approve the system dialog (needed for `android_screen_record`)
-- Grant additional runtime permissions in **Settings > Apps > Hermes Bridge > Permissions**:
+- Grant additional runtime permissions in **Settings > Apps > NasTech > Permissions**:
   - **Location** — for `android_location`
   - **Contacts** — for `android_search_contacts`
   - **SMS** — for `android_send_sms`
   - **Phone** — for `android_call` (direct dialing)
-- Enable **Notification Listener** in **Settings > Apps > Special app access > Notification access** → enable Hermes Bridge (for `android_notifications` / `android_events`)
+- Enable **Notification Listener** in **Settings > Apps > Special app access > Notification access** → enable NasTech (for `android_notifications` / `android_events`)
 
-### 3. Connect to your Hermes server
+### 3. Connect to your NasTech server
 
-Tell hermes (via Telegram, Discord, etc):
+Tell nastech (via Telegram, Discord, etc):
 ```
 Connect to my phone, code is <CODE>
 ```
 Where `<CODE>` is the 6-character pairing code shown in the app.
 
-Hermes will reply with the server address. Enter it in the app and tap **Connect**.
+NasTech will reply with the server address. Enter it in the app and tap **Connect**.
 
 ### 4. Done
 The agent can now control your phone. Try: "open Instagram", "take a screenshot", "what apps do I have?"
@@ -87,12 +87,12 @@ The bridge app can run on Android Automotive OS (AAOS) car head units. Phone-spe
 
 ### Installation
 
-1. Get the APK: download `hermes-android-<version>.apk` from the [Latest Build release](https://github.com/raulvidis/hermes-android/releases/tag/latest-build), or build it with `cd hermes-android-bridge && ./gradlew assembleDebug`
-2. Sideload via ADB: `adb install hermes-android-*.apk`
+1. Get the APK: download `nastech-android-<version>.apk` from the [Latest Build release](https://github.com/nastech-ai/nastech-android/releases/tag/latest-build), or build it with `cd nastech-android-bridge && ./gradlew assembleDebug`
+2. Sideload via ADB: `adb install nastech-android-*.apk`
    - USB: connect directly to the head unit's USB port
    - WiFi: `adb connect <head-unit-ip>:5555` then install
-3. Grant Accessibility Service: **Settings > Accessibility > Hermes Bridge > Enable**
-4. Grant overlay permission: **Settings > Apps > Special access > Draw over apps > Hermes Bridge**
+3. Grant Accessibility Service: **Settings > Accessibility > NasTech > Enable**
+4. Grant overlay permission: **Settings > Apps > Special access > Draw over apps > NasTech**
 5. Skip phone-specific permissions (SMS, calls, contacts) — not applicable
 
 ### Connection
@@ -174,7 +174,7 @@ All other tools (tap, swipe, type, screenshot, read screen, open apps, etc.) wor
 
 **Android app (Kotlin):**
 - AccessibilityService reads the UI tree and performs taps/types/swipes
-- WebSocket client (OkHttp) connects out to the Hermes server
+- WebSocket client (OkHttp) connects out to the NasTech server
 - Ktor HTTP server for local/USB development
 - Pairing code authentication
 - Screenshot capture via AccessibilityService API
@@ -182,7 +182,7 @@ All other tools (tap, swipe, type, screenshot, read screen, open apps, etc.) wor
 
 **Server (Python):**
 - WebSocket + HTTP relay (aiohttp) on port 8766
-- Tools register into hermes-agent's tool registry
+- Tools register into nastech-agent's tool registry
 - Rate-limited authentication (5 attempts / 60s, then 5min block)
 - Auto-detects server public IP for setup instructions
 
@@ -202,13 +202,13 @@ pip install -e ".[dev]"
 python -m pytest tests/
 
 # Android build
-cd hermes-android-bridge
+cd nastech-android-bridge
 ./gradlew assembleDebug
 ```
 
 ## Roadmap
 
-This is a working prototype. The vision: **give Hermes its own phone** — a fully autonomous mobile presence.
+This is a working prototype. The vision: **give NasTech its own phone** — a fully autonomous mobile presence.
 
 ### v0.2 — Polish & Reliability
 - [ ] TLS/WSS support for encrypted phone-server communication
@@ -230,7 +230,7 @@ This is a working prototype. The vision: **give Hermes its own phone** — a ful
 - [ ] **Event triggers** — "when a notification arrives from this app, do X"
 - [ ] **Macro recording** — watch a workflow once, replay it on demand
 
-### v0.5 — Hermes Gets a Voice
+### v0.5 — NasTech Gets a Voice
 - [ ] **Phone call capability** — agent can answer and speak in phone calls using TTS/STT
 - [ ] **Voice assistant mode** — always-listening on the phone, responds via speaker
 - [ ] **Call handling** — "answer my phone, take a message, tell them I'll call back"
@@ -245,8 +245,8 @@ This is a working prototype. The vision: **give Hermes its own phone** — a ful
 - [ ] iOS support via Shortcuts/accessibility bridge
 - [ ] Web dashboard for monitoring phone activity
 - [ ] Cross-app workflows ("find a restaurant on Maps, share on WhatsApp, book an Uber there")
-- [ ] Dedicated "Hermes Phone" — a phone that boots straight into agent mode
+- [ ] Dedicated "NasTech Phone" — a phone that boots straight into agent mode
 
 ## Links
 
-- **hermes-agent**: [github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
+- **nastech-agent**: [github.com/nastech-ai/nastech-agent](https://github.com/nastech-ai/nastech-agent)

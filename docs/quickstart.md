@@ -9,22 +9,22 @@ read_when:
 
 ## 1. Install the bridge app on your phone
 
-Easiest: download the prebuilt APK from the [Latest Build release](https://github.com/raulvidis/hermes-android/releases/tag/latest-build) and install it (enable "Install unknown apps" when prompted, or `adb install hermes-android-*.apk`).
+Easiest: download the prebuilt APK from the [Latest Build release](https://github.com/nastech-ai/nastech-android/releases/tag/latest-build) and install it (enable "Install unknown apps" when prompted, or `adb install nastech-android-*.apk`).
 
 It is an unsigned debug build, so Play Protect may warn on install.
 
 ## 2. Grant permissions
 
-In the Hermes Bridge app:
-- Enable Accessibility Service → toggle Hermes Bridge ON.
+In the NasTech app:
+- Enable Accessibility Service → toggle NasTech ON.
 - Enable Status Overlay → grant.
 - Grant Screen Recording (for `android_screen_record`).
-- Optional runtime perms (Settings > Apps > Hermes Bridge > Permissions): Location, Contacts, SMS, Phone.
+- Optional runtime perms (Settings > Apps > NasTech > Permissions): Location, Contacts, SMS, Phone.
 - Notification access (Settings > Special app access) for `android_notifications` / `android_events`.
 
-## 3. Connect to your Hermes server
+## 3. Connect to your NasTech server
 
-Tell hermes: `Connect to my phone, code is <CODE>` (the 6-char code shown in the app). Hermes replies with the server address — enter it in the app and tap **Connect**.
+Tell nastech: `Connect to my phone, code is <CODE>` (the 6-char code shown in the app). NasTech replies with the server address — enter it in the app and tap **Connect**.
 
 ## 4. Try it
 

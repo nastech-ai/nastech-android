@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="hermes-android",
+    name="nastech-android",
     version="0.3.0",
     packages=find_packages(),
     install_requires=[
